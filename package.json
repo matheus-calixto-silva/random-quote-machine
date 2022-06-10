@@ -28,6 +28,7 @@
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "husky": "^8.0.1",
+    "sass": "^1.52.3",
     "vite": "^2.9.9"
   },
   "config": {
