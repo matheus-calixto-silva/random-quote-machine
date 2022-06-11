@@ -3,19 +3,30 @@ import './App.scss';
 
 const App = () => {
   const [data, setData] = useState(null);
-  const tweetUrl = `https://www.twitter.com/intent/tweet?text=${data?.quote?.body}`
+  const tweetContent = `${data?.quote?.body}—${data?.quote?.author}`;
+  const tweetUrl = `https://www.twitter.com/intent/tweet?text=${tweetContent}`;
+
   useEffect(() => {
-    callApi();
+    if (checkTweetLengh) {
+      callApi();
+    }
   }, []);
 
   function handleClick() {
-    setData(null);
-    callApi();
+    if (checkTweetLengh) {
+      callApi();
+    }
   }
 
   async function callApi() {
     const quoteJson = await (await fetch('https://favqs.com/api/qotd')).json();
     setData(quoteJson);
+  }
+
+  function checkTweetLengh() {
+    return (
+      data === null && data?.quote?.body.length + data.quote.author.length > 279
+    );
   }
 
   return (
@@ -25,12 +36,7 @@ const App = () => {
         <p id='author'>{data && data.quote.author}</p>
       </div>
       <div id='buttons'>
-        <a
-          href={tweetUrl}
-          target='_blank'
-          id='tweet-quote'
-          rel='noreferrer'
-        >
+        <a href={tweetUrl} target='_blank' id='tweet-quote' rel='noreferrer'>
           Tweet
         </a>
         <button id='new-quote' onClick={handleClick}>
