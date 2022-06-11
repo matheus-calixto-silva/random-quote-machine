@@ -3,7 +3,7 @@ import './App.scss';
 
 const App = () => {
   const [data, setData] = useState(null);
-
+  const tweetUrl = `https://www.twitter.com/intent/tweet?text=${data?.quote?.body}`
   useEffect(() => {
     callApi();
   }, []);
@@ -25,7 +25,12 @@ const App = () => {
         <p id='author'>{data && data.quote.author}</p>
       </div>
       <div id='buttons'>
-        <a href='twitter.com/intent/tweet' target='_blank' id='tweet-quote'>
+        <a
+          href={tweetUrl}
+          target='_blank'
+          id='tweet-quote'
+          rel='noreferrer'
+        >
           Tweet
         </a>
         <button id='new-quote' onClick={handleClick}>
