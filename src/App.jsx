@@ -19,8 +19,15 @@ const App = () => {
   }
 
   async function callApi() {
-    const quoteJson = await (await fetch('https://favqs.com/api/qotd')).json();
-    setData(quoteJson);
+    try {
+      const quoteJson = await (
+        await fetch('https://favqs.com/api/qotd')
+      ).json();
+      setData(quoteJson);
+    } catch (error) {
+      setData('An error occured, please try again');
+      console.log(error);
+    }
   }
 
   function checkTweetLengh() {
@@ -33,7 +40,7 @@ const App = () => {
     <div id='quote-box'>
       <div id='quote'>
         <h1 id='text'>“{data && data.quote.body}”</h1>
-        <p id='author'>{data && data.quote.author}</p>
+        {data && <p id='author'>{data.quote.author}</p>}
       </div>
       <div id='buttons'>
         <a href={tweetUrl} target='_blank' id='tweet-quote' rel='noreferrer'>
