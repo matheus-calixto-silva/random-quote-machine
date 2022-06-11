@@ -1,9 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body,
 #quote-box,
 #buttons {
@@ -19,55 +13,116 @@ body,
 body {
   width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 #quote-box {
-  width: 500px;
-  height: 250px;
-  border: 1px solid #000;
-  border-radius: 8px;
+  max-width: 62rem;
   flex-direction: column;
-  padding: 20px;
 
-  #text {
-    font-size: 20px;
+  #quote {
+    margin-bottom: 6rem;
   }
 
-  #author{
-    text-align: right;
+  #text {
+    font-family: cursive;
+    position: relative; /* for pseudos */
+    color: #fff;
+    font-size: 2.8rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+    border: solid 0.2rem;
+    border-radius: 2rem;
+    padding: 2.5rem;
+  }
+
+  #text:after {
+    content: '';
+    position: absolute;
+    border: 0.2rem solid #fff;
+    border-radius: 0 5rem 0 0;
+    width: 6rem;
+    height: 6rem;
+    bottom: -6.2rem;
+    left: 5rem;
+    border-bottom: none;
+    border-left: none;
+    z-index: 3;
+  }
+
+  #text:before {
+    content: '';
+    position: absolute;
+    width: 8rem;
+    border: 0.6rem solid #292a2b;
+    bottom: -3px;
+    left: 5rem;
+    z-index: 2;
+  }
+
+  #author {
+    position: relative;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-top: 1.5rem;
+    z-index: 1;
+    margin-left: 15rem;
+    padding-left: 1.2rem;
+  }
+
+  #author:first-letter {
+    margin-left: -1.2rem;
   }
 
   #buttons {
-    border: 1px solid #000;
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
 
-  #tweet-quote {
-    background-color: #4CAF50; /* Green */
-    border: none;
+  #tweet-quote,
+  #new-quote {
+    background: none;
+    border: 0.1rem solid #fff;
+    border-radius: 1rem;
     color: white;
-    padding: 15px 32px;
+    padding: 1.5rem 3.2rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1.6rem;
     cursor: pointer;
+    transition: 0.2s;
   }
 
-  #new-quote {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
+  #tweet-quote:hover,
+  #new-quote:hover {
+    background: #fff;
+    color: #292a2b;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #quote-box {
+    width: 95%;
+    margin: auto;
+  }
+
+  #buttons {
+    flex-direction: column;
+
+    :nth-child(1) {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media all and (min-width: 600px) {
+  #text {
+    font-size: 3rem;
+    line-height: 1.2;
   }
 }
